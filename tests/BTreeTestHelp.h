@@ -50,30 +50,30 @@ shared_ptr<btree> build_thin_three_tier();
 
 shared_ptr<btree> build_node(int size, int* keys);
 
-void print_tree(shared_ptr<btree> &root);
+void print_tree(shared_ptr<btree> root);
 
 // check_tree returns true if all invariants for this b-tree are
 // satisfied, false otherwise.
-bool check_tree(shared_ptr<btree> &root);
+bool check_tree(shared_ptr<btree> root);
 
-void check_invariants(invariants* &invars, shared_ptr<btree> &node, bool is_root);
+void check_invariants(invariants* &invars, shared_ptr<btree> node, bool is_root);
 
-void check_leaf_height(shared_ptr<btree> &node, vector<int> &depth, int current_depth);
+void check_leaf_height(shared_ptr<btree> node, vector<int>& depth, int current_depth);
 
-bool check_height(shared_ptr<btree> &node, int &result_height);
+bool check_height(shared_ptr<btree> node, int result_height);
 
-void check_size(shared_ptr<btree> &node, int &result_nodes, int &result_keys, bool is_root);
+void check_size(shared_ptr<btree> node, int result_nodes, int result_keys, bool is_root);
 
-bool check_node_key_range(shared_ptr<btree> &node, int low, int high, bool recurse);
+bool check_node_key_range(shared_ptr<btree> node, int low, int high, bool recurse);
 
 bool any_false(invariants* &invars);
 
 shared_ptr<btree> load_tree_from_file(string &filename);
 
-bool private_contains(shared_ptr<btree> &node, int key);
+bool private_contains(shared_ptr<btree> node, int key);
 
 // private_search_all looks at every node in the tree for the given
 // key and returns true when it finds it, or false if it doesn't.
-bool private_search_all(shared_ptr<btree>& node, int key);
+bool private_search_all(shared_ptr<btree> node, int key);
 
 #endif //BTREETESTHELP_H__

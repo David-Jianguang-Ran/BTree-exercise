@@ -5,7 +5,6 @@
 // you so you can use it as a starting point for your own purposes (or
 // not, it is up to you).
 
-#include <vector>
 #include <sstream>
 #include <iostream>
 #include <string>
@@ -195,7 +194,7 @@ shared_ptr<btree> build_node(int size, int* keys) {
   return node;
 }
 
-string get_id_for_dot(shared_ptr<btree> &node) {
+string get_id_for_dot(shared_ptr<btree> node) {
   stringstream ss;
   ss << node; // address in memory
   string as_addr = ss.str();
@@ -203,7 +202,7 @@ string get_id_for_dot(shared_ptr<btree> &node) {
   return as_addr;
 }
 
-string get_label_for_dot(shared_ptr<btree> &node) {
+string get_label_for_dot(shared_ptr<btree> node) {
   stringstream ss;
   for (int i=0; i < node->num_keys; i++) {
     ss << "" << node->keys[i];
@@ -214,12 +213,12 @@ string get_label_for_dot(shared_ptr<btree> &node) {
   return ss.str();
 }
 
-void print_dot_label(shared_ptr<btree> &node) {
+void print_dot_label(shared_ptr<btree> node) {
   cout << "    " << get_id_for_dot(node) 
        << " [label=\"" << get_label_for_dot(node) << "\"];" << endl;
 }
 
-void print_graphviz_dotfile(shared_ptr<btree> &node, int depth) {
+void print_graphviz_dotfile(shared_ptr<btree> node, int depth) {
   string spaces = "    ";
   if (depth == 0) {
     print_dot_label(node);
@@ -247,14 +246,14 @@ void print_graphviz_dotfile(shared_ptr<btree> &node, int depth) {
 // view it.
 //
 // there is a web-based viewer at http://www.webgraphviz.com/
-void print_tree(shared_ptr<btree> &root) {
+void print_tree(shared_ptr<btree> root) {
   cout << "graph btree {" << endl;
   int depth = 0;
   print_graphviz_dotfile(root, depth);
   cout << "}" << endl;
 }
 
-bool check_tree(shared_ptr<btree> &root) {
+bool check_tree(shared_ptr<btree> root) {
   bool ret = false;
   invariants* invars = new invariants;
   check_invariants(invars, root, true);
@@ -263,7 +262,7 @@ bool check_tree(shared_ptr<btree> &root) {
   return ret;  
 }
 
-void check_invariants(invariants* &invars, shared_ptr<btree> &node, bool is_root) {
+void check_invariants(invariants* &invars, shared_ptr<btree> node, bool is_root) {
 
   if (is_root && node == NULL) {
     invars->ascending = true;
@@ -329,7 +328,7 @@ void check_invariants(invariants* &invars, shared_ptr<btree> &node, bool is_root
 }
 
 
-void check_leaf_height(shared_ptr<btree> &node, vector<int> &depth, int current_depth) {
+void check_leaf_height(shared_ptr<btree> node, vector<int>& depth, int current_depth) {
   if (node->is_leaf) {
     depth.push_back(current_depth);
   } else {
@@ -339,7 +338,7 @@ void check_leaf_height(shared_ptr<btree> &node, vector<int> &depth, int current_
   }
 }
 
-bool check_height(shared_ptr<btree> &node, int &result_height) {
+bool check_height(shared_ptr<btree> node, int result_height) {
   vector<int> depth;
   check_leaf_height(node, depth, 0);
   int val = 0;
@@ -360,7 +359,7 @@ bool check_height(shared_ptr<btree> &node, int &result_height) {
   return same;
 }
 
-void check_size(shared_ptr<btree> &node, int &result_nodes, int &result_keys, bool is_root) {
+void check_size(shared_ptr<btree> node, int result_nodes, int result_keys, bool is_root) {
   if (is_root) {
     result_nodes = 0;
     result_keys = 0;
@@ -377,7 +376,7 @@ void check_size(shared_ptr<btree> &node, int &result_nodes, int &result_keys, bo
   }
 }
 
-bool check_node_key_range(shared_ptr<btree> &node, int low, int high, bool recurse) {
+bool check_node_key_range(shared_ptr<btree> node, int low, int high, bool recurse) {
 
   for (int i=0; i < node->num_keys; i++) {
     if (node->keys[i] <= low || // key is out of low range
@@ -415,7 +414,7 @@ bool any_false(invariants* &invars) {
   return !wrong;
 }
 
-bool private_contains(shared_ptr<btree> &node, int key) {
+bool private_contains(shared_ptr<btree> node, int key) {
   if (node == NULL) {
     return false;
   }
@@ -434,7 +433,7 @@ bool private_contains(shared_ptr<btree> &node, int key) {
 }
 
 
-bool private_search_all(shared_ptr<btree>& node, int key) {
+bool private_search_all(shared_ptr<btree> node, int key) {
   if (private_contains(node, key)) {
     return true; // found it here!
   }

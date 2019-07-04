@@ -18,13 +18,13 @@ void BTree::remove(shared_ptr<btree> root, int key){
 }
 
 shared_ptr<btree> BTree::find(shared_ptr<btree> root, int key){
-
+  return shared_ptr<btree>(NULL);
 }
 
 int BTree::count_nodes(shared_ptr<btree> root){
-
+  return 0;
 }
 
 int BTree::count_keys(shared_ptr<btree> root){
-
+  return 0;
 }
