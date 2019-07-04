@@ -52,7 +52,7 @@ public:
   // -- the 'root' pointer should refer to the root of the
   //    tree. (the root may change when we insert or remove)
   // -- the btree pointed to by 'root' is valid.
-  void Insert(shared_ptr<btree> root, int key);
+  void insert(shared_ptr<btree> root, int key);
 
   // remove deletes the given key from a b-tree rooted at 'root'. If the
   // key is not in the btree this should do nothing.
@@ -61,24 +61,24 @@ public:
   // -- the 'root' pointer should refer to the root of the
   //    tree. (the root may change when we insert or delete)
   // -- the btree pointed to by 'root' is valid.
-  void Remove(shared_ptr<btree> root, int key);
+  void remove(shared_ptr<btree> root, int key);
 
   // find locates the node that either: (a) currently contains this key,
   // or (b) the node that would contain it if we were to try to insert
   // it.  Note that this always returns a non-null node.
-  shared_ptr<btree> Find(shared_ptr<btree> root, int key);
+  shared_ptr<btree> find(shared_ptr<btree> root, int key);
 
   // count_nodes returns the number of nodes referenced by this
   // btree. If this node is NULL, count_nodes returns zero; if it is a
   // root, it returns 1; otherwise it returns 1 plus however many nodes
   // are accessable via any valid child links.
-  int CountNodes(shared_ptr<btree> root);
+  int count_nodes(shared_ptr<btree> root);
 
   // count_keys returns the total number of keys stored in this
   // btree. If the root node is null it returns zero; otherwise it
   // returns the number of keys in the root plus however many keys are
   // contained in valid child links.
-  int CountKeys(shared_ptr<btree> root);
+  int count_keys(shared_ptr<btree> root);
 
   // you can add add more public member variables and member functions here if you need
 

@@ -9,22 +9,22 @@ BTree::BTree(){
 BTree::~BTree(){
 }
 
-void BTree::Insert(shared_ptr<btree> root, int key){
+void BTree::insert(shared_ptr<btree> root, int key){
 
 }
 
-void BTree::Remove(shared_ptr<btree> root, int key){
+void BTree::remove(shared_ptr<btree> root, int key){
 
 }
 
-shared_ptr<btree> BTree::Find(shared_ptr<btree> root, int key){
+shared_ptr<btree> BTree::find(shared_ptr<btree> root, int key){
 
 }
 
-int BTree::CountNodes(shared_ptr<btree> root){
+int BTree::count_nodes(shared_ptr<btree> root){
 
 }
 
-int BTree::CountKeys(shared_ptr<btree> root){
+int BTree::count_keys(shared_ptr<btree> root){
 
 }

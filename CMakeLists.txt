@@ -45,9 +45,14 @@ file(GLOB TEST_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
 	"tests/test_*.cpp"
 )
 
+file(GLOB TEST_HELPER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
+	"tests/BTreeTestHelp.cpp"
+	"tests/BTreeTestHelp.h"
+)
+
 # create an executable for all tests 
-add_executable( run_tests ${TEST_FILES} ${USER_FILES} )
-target_link_libraries( run_tests gtest_main )
+add_executable( run_tests ${TEST_FILES} ${USER_FILES} ${TEST_HELPER_FILES} )
+target_link_libraries( run_tests gtest_main)
 
 ENABLE_TESTING()
 
