@@ -459,5 +459,5 @@ TEST_F(test_BTree, RemoveKeyFromInternalNodeWithAtmincapacitySiblings){
   ASSERT_TRUE(check_tree(thrice));
   add_points_to_grade(60);
   ASSERT_FALSE(private_search_all(thrice, 24));  
-  add_points_to_grade(60);
+  add_points_to_grade(40);
 }
