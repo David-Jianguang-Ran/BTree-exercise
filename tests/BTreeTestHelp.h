@@ -60,15 +60,15 @@ void check_invariants(invariants* &invars, shared_ptr<btree> node, bool is_root)
 
 void check_leaf_height(shared_ptr<btree> node, vector<int>& depth, int current_depth);
 
-bool check_height(shared_ptr<btree> node, int result_height);
+bool check_height(shared_ptr<btree> node, int& result_height);
 
-void check_size(shared_ptr<btree> node, int result_nodes, int result_keys, bool is_root);
+void check_size(shared_ptr<btree> node, int& result_nodes, int& result_keys, bool is_root);
 
 bool check_node_key_range(shared_ptr<btree> node, int low, int high, bool recurse);
 
 bool any_false(invariants* &invars);
 
-shared_ptr<btree> load_tree_from_file(string &filename);
+shared_ptr<btree> load_tree_from_file(string& filename);
 
 bool private_contains(shared_ptr<btree> node, int key);
 

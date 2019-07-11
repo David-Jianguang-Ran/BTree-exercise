@@ -338,7 +338,7 @@ void check_leaf_height(shared_ptr<btree> node, vector<int>& depth, int current_d
   }
 }
 
-bool check_height(shared_ptr<btree> node, int result_height) {
+bool check_height(shared_ptr<btree> node, int& result_height) {
   vector<int> depth;
   check_leaf_height(node, depth, 0);
   int val = 0;
@@ -351,15 +351,15 @@ bool check_height(shared_ptr<btree> node, int result_height) {
     } else {
       int other = depth[i];
       if (val != other) {
-	same = false;
-	break;
+        same = false;
+        break;
       }
     }
   }
   return same;
 }
 
-void check_size(shared_ptr<btree> node, int result_nodes, int result_keys, bool is_root) {
+void check_size(shared_ptr<btree> node, int& result_nodes, int& result_keys, bool is_root) {
   if (is_root) {
     result_nodes = 0;
     result_keys = 0;
