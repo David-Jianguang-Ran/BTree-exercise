@@ -19,6 +19,8 @@ file(GLOB USER_FILES
 )
 file(GLOB TEST_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
 "tests/test_*.cpp"
+"tests/BTreeTestHelp.cpp"
+"tests/BTreeTestHelp.h"
 )
 
 # Try to Find GTest
