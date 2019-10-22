@@ -9,6 +9,7 @@
 #include <string>
 #include <math.h>
 #include "BTreeTestHelp.h"
+#include <cmath>
 
 using namespace std;
 
